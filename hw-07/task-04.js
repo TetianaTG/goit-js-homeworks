@@ -1,29 +1,25 @@
 "use strict";
-const obj = {
-  counter: 0,
-  text: document.querySelector("#value"),
-  changeText() {
-    this.text.textContent = this.counter;
+const refs = {
+  counter: document.querySelector('#counter'),
+  value: document.querySelector('#value'),
+  };
+  
+  
+  const actions = {
+  state: {
+  value: 0,
+  },
+  decrement() {
+  this.state.value -= 1;
   },
   increment() {
-    this.counter += 1;
-    this.changeText();
+  this.state.value += 1;
   },
-
-  decrement() {
-    this.counter -= 1;
-    this.changeText();
-  }
-};
-
-const counter = document.querySelector("#counter");
-
-const changeValue = ({ target }) => {
-  return target.dataset.action === "increment"
-    ? obj.increment()
-    : target.dataset.action === "decrement"
-    ? obj.decrement()
-    : null;
-};
-
-counter.addEventListener("click", changeValue);
+  };
+  
+  const changeValue = ({ target }) => {
+  actions[target.dataset.action]();
+  refs.value.textContent = actions.state.value;
+  };
+  
+  refs.counter.addEventListener('click', changeValue);

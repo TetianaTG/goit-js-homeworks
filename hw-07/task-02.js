@@ -1,17 +1,23 @@
 'use strict';
 
-'use strict';
+const ingredients = [
+  'Картошка',
+  'Грибы',
+  'Чеснок',
+  'Помидоры',
+  'Зелень',
+  'Приправы',
+];
+const ingredientsList = document.querySelector('#ingredients');
+const ingredientsListItems = document.createDocumentFragment();
+ingredients.forEach(item =>
+ingredientsListItems.appendChild(createListElement(item)),
+);
 
-const liCounter = () => {
-  let elements = [...document.querySelectorAll('.item ul')];
-  let header = [...document.querySelectorAll('.item h2')];
+ingredientsList.appendChild(ingredientsListItems);
 
-  for (let i = 0; i < header.length; i += 1) {
-    let elementChildrens = [...elements[i].children];
-    let ulElements = elementChildrens.reduce((acc, element) => acc + 1, 0);
-    console.dir(`Категория: ${header[i].textContent}`);
-    console.log(`Количество элементов: ${ulElements}`);
-  }
-};
-
-liCounter();
+function createListElement(item) {
+const listItem = document.createElement('li');
+listItem.textContent = item;
+return listItem;
+}

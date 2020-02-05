@@ -1,11 +1,13 @@
 'use strict';
 
 const categories = document.querySelector('#categories');
-console.log(`В списке ${categories.children.length} категории.`);
 
-const items = document.querySelectorAll('.item');
-items.forEach(item =>
-  console.log(
-    `Категория: ${item.children[0].textContent}, Количество элементов: ${item.children[1].children.length}`,
-  ),
-);
+const res = categories.children.length;
+console.log(res);
+
+const str = [...categories.children]
+.map(e => `${e.children[0].textContent}: ${e.children[1].children.length}`)
+.join('\n');
+console.log(str);
+
+console.log(categories);
